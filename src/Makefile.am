@@ -288,6 +288,7 @@ vte_@VTE_API_MAJOR_VERSION@_@VTE_API_MINOR_VERSION@_CFLAGS = \
 	-Wno-unused-but-set-variable \
 	$(VTE_CFLAGS) \
 	$(AM_CFLAGS) \
+	-I$(top_srcdir) \
 	$(NULL)
 
 vte_@VTE_API_MAJOR_VERSION@_@VTE_API_MINOR_VERSION@_LDFLAGS = \
