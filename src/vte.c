@@ -10401,6 +10401,13 @@ vte_terminal_scroll(GtkWidget *widget, GdkEventScroll *event)
 
 	vte_terminal_read_modifiers (terminal, (GdkEvent*) event);
 
+#if GTK_CHECK_VERSION (2, 90, 8)
+	/* Do not intercept Alt+scroll, let the GtkNotebook handle it to switch tabs.
+	   Requires a fixed GTK+, see https://bugzilla.gnome.org/show_bug.cgi?id=145244 */
+	if (event->state & GDK_MOD1_MASK)
+		return FALSE;
+#endif
+
 	switch (event->direction) {
 	case GDK_SCROLL_UP:
 		terminal->pvt->mouse_smooth_scroll_delta -= 1.;
